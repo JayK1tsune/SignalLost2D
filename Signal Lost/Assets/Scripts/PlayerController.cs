@@ -80,7 +80,6 @@ namespace SignalLost
     public void OnSignal(InputAction.CallbackContext context){   
         //Debug.Log("Pressed E");
         _colourDetect.scriptEnabled = !_colourDetect.scriptEnabled;
-        _colourDetect.lineRenderer.enabled = true;
     }
     public void OnJump(InputAction.CallbackContext context){
         

@@ -14,10 +14,9 @@ public class colourDetect : MonoBehaviour
     public float pulseFrequency = 1.0f; 
     public bool scriptEnabled;
     public float basePulseFrequency = 1.0f;
-    public float lineDuration = 0.1f;
-    public float lineWidth = 1f;
+
     private SpriteRenderer spriteRenderer;
-    public LineRenderer lineRenderer;
+
     private float lineTimer = 0.0f;
 
 
@@ -26,31 +25,11 @@ public class colourDetect : MonoBehaviour
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
          
-        lineRenderer = gameObject.GetComponent<LineRenderer>();
-        lineRenderer.enabled = false;
-        lineRenderer.startWidth = lineWidth;
-        lineRenderer.endWidth = lineWidth;
     }
 
     private void Update()
     {
-        if (scriptEnabled){
-            //Setting Up inital lineRenderer.
-            lineRenderer.SetPosition(0, transform.position);
-            lineRenderer.SetPosition(1, target.position);
 
-            
-            lineRenderer.enabled = true;
-            StartCoroutine(DisableLineRenderer());
-        }
-        if (lineTimer > 0.0f)
-        {
-            lineTimer -= Time.deltaTime;
-            if (lineTimer <= 0.0f)
-            {
-                lineRenderer.enabled = false;
-            }
-        }
         if (!scriptEnabled)
         {
             spriteRenderer.color = Color.white;
@@ -100,10 +79,7 @@ public class colourDetect : MonoBehaviour
 
         
     }
-    IEnumerator DisableLineRenderer(){
-    yield return new WaitForSeconds(0.2f);
-    lineRenderer.enabled = false;
-    }
+
 
 }
 }
