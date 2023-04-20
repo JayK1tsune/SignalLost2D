@@ -8,21 +8,26 @@ namespace SignalLost
     public class PlayerController : MonoBehaviour
 {
     Vector2 moveInput;
+
     
-    bool IsJumping;
-    public float jumpAmount = 10;
-   
-    public float fallingGravityScale = 3;
-    public float jumpTime;
-    public float jumpForce=20;
-    public float gravity = -9.81f;
-    public float gravityScale = 5;
+    /// <summary>////
+    /// Jumping delegates
+     /// </summary>
+
+    [SerializeField] int jumpPower;
+    [SerializeField] float fallMultiplier;
+
+    public Transform groundCheck;
+    public LayerMask groundLayer;
+    bool isGrounded;
+    Vector2 VecGravity;
+    ////
 
     public float walkSpeed = 5f;
     float velocity;
     Rigidbody2D rb;
     [SerializeField] Animator animator;
-    public GroundCheck groundCheck;
+   
     public bool IsMoving { get; private set; }
     
    
@@ -37,57 +42,42 @@ namespace SignalLost
         
         
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
     void Update()
     {
         
+        isGrounded = Physics2D.OverlapCapsule(groundCheck.position,new Vector2(1f,0.14f),CapsuleDirection2D.Horizontal,0,groundLayer);
+
     }
 
     void FixedUpdate()
     {
         rb.velocity = new Vector2(moveInput.x * walkSpeed, rb.velocity.y);
-        if(rb.velocity.y >= 0)
-        {
-            rb.gravityScale = gravityScale;
-        }
-        else if (rb.velocity.y < 0)
-        {
-            rb.gravityScale = fallingGravityScale;
-        }
-        velocity += gravity * gravityScale * Time.deltaTime;
-        if (groundCheck.isGrounded && velocity < 0)
-        {
-            velocity = 0;
-        }
-        transform.Translate(new Vector3(0, velocity, 0) * Time.deltaTime);
+        
+        if(rb.velocity.y < 0 ){
+            rb.velocity -= VecGravity * fallMultiplier * Time.deltaTime;
+        }  
+        
         
     }
     public void OnMove(InputAction.CallbackContext context){
         moveInput = context.ReadValue<Vector2>();
 
         IsMoving = moveInput != Vector2.zero;
-        if (IsMoving)
-        {
-            
-        }
+        
     }
+
     public void OnSignal(InputAction.CallbackContext context){   
         //Debug.Log("Pressed E");
         _colourDetect.scriptEnabled = !_colourDetect.scriptEnabled;
     }
     public void OnJump(InputAction.CallbackContext context){
-        
-        IsJumping = true;
-        jumpTime = 0;
-        velocity = jumpForce;
-        
-        
+
+
+        if(isGrounded){
+            rb.velocity = new Vector2(rb.velocity.x,jumpPower);
+        }
+   
     }
 }
     

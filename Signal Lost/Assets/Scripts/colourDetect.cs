@@ -17,7 +17,7 @@ public class colourDetect : MonoBehaviour
 
     private SpriteRenderer spriteRenderer;
 
-    private float lineTimer = 0.0f;
+
 
 
 
