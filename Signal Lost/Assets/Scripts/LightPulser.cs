@@ -1,15 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class LightPulser : MonoBehaviour
 {
     public float duration;
-    public Light lt;
+    public Light2D lt;
     // Start is called before the first frame update
     void Start()
     {
-        lt= GetComponent<Light>();
+        lt= GetComponent<Light2D>();
     }
 
     // Update is called once per frame

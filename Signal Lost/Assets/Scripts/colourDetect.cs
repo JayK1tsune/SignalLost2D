@@ -9,6 +9,9 @@ public class colourDetect : MonoBehaviour
     public Transform target; // the object the player is trying to find
     public Color[] colors; // an array of colors to use based on distance
     public float[] distances; 
+
+    public Color Wincolor;
+    public Transform home;
     public float closeDistance = 2.0f; 
     public float farDistance = 10.0f; 
     public float pulseFrequency = 1.0f; 
@@ -29,12 +32,13 @@ public class colourDetect : MonoBehaviour
 
     private void Update()
     {
-
+ 
         if (!scriptEnabled)
         {
             spriteRenderer.color = Color.white;
             return;
         }
+
 
         float distance = Vector3.Distance(transform.position, target.position);
 
@@ -75,15 +79,17 @@ public class colourDetect : MonoBehaviour
             return;
         }
 
+
+
         
         spriteRenderer.color = colors[colourIndex];
         spriteRenderer.color += new Color(0,0,0,1);
 
-        
+        }   
     }
 
 
 }
-}
+
  
 
