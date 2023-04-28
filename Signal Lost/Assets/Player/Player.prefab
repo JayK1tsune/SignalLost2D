@@ -57,7 +57,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -127,7 +127,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.16992188, y: 0.43164062}
+    oldSize: {x: 5.4375, y: 13.8125}
     newSize: {x: 0.16992188, y: 0.43164062}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -178,7 +178,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8929b0784e2d4c4eaa16db166a79bdc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  jumpPower: 0
+  fallMultiplier: 0
+  groundCheck: {fileID: 0}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
   walkSpeed: 5
+  animator: {fileID: 0}
+  _colourDetect: {fileID: 0}
+  player: {fileID: 0}
 --- !u!70 &2763942373088585387
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

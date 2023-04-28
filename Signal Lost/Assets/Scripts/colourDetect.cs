@@ -75,7 +75,9 @@ public class colourDetect : MonoBehaviour
             return;
         }
 
+        
         spriteRenderer.color = colors[colourIndex];
+        spriteRenderer.color += new Color(0,0,0,1);
 
         
     }
