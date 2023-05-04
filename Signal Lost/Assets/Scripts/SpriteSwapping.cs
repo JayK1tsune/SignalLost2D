@@ -8,7 +8,7 @@ public class SpriteSwapping : MonoBehaviour
     SpriteRenderer spriteRenderer;
     public int amountOfParts;
     public Sprite[] keys;
-    public bool isWhole{get; set;}
+    public bool isWhole;
 
     void Awake()
     {
@@ -25,6 +25,10 @@ public class SpriteSwapping : MonoBehaviour
             spriteRenderer.sprite = characterSprites[4];
             isWhole = true;
             break;
+        }
+
+        if(amountOfParts <= 3){
+            isWhole = false;
         }
     }
 }
