@@ -5,12 +5,33 @@ using UnityEngine;
 public class FollowPlayer : MonoBehaviour
 {
     [SerializeField] private Transform player;
-    [SerializeField] private Vector2 offset;
-    private bool isCollected;
-    // Update is called once per frame
+    [SerializeField] private Vector3 offset;
+    public bool isCollected{get;set;}
+    Animator animator;
+    SpriteSwapping spriteSwapping;
+    
+    void Awake()
+    {
+        animator = GetComponent<Animator>();
+        spriteSwapping = player.GetComponent<SpriteSwapping>();
+    }
     void Update()
     {
-        transform.position = player.position + player.TransformDirection(offset);
-        transform.rotation = player.rotation;
+        if(isCollected){
+
+            animator.enabled = false;
+            transform.position = player.position + player.TransformDirection(offset);
+            transform.rotation = player.rotation;
+        }
+
+    }
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if(!isCollected){
+            spriteSwapping.amountOfParts++;
+        }
+        isCollected = true;
+        
+        
     }
 }
