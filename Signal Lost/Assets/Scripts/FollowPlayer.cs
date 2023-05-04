@@ -9,11 +9,15 @@ public class FollowPlayer : MonoBehaviour
     public bool isCollected{get;set;}
     Animator animator;
     SpriteSwapping spriteSwapping;
+
+    public Vector3 origin;
     
     void Awake()
     {
         animator = GetComponent<Animator>();
         spriteSwapping = player.GetComponent<SpriteSwapping>();
+        origin = transform.position;
+        
     }
     void Update()
     {
@@ -28,7 +32,7 @@ public class FollowPlayer : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
         if(!isCollected){
-            spriteSwapping.amountOfParts++;
+            spriteSwapping.amountOfParts++;           
         }
         isCollected = true;
         
