@@ -40,6 +40,7 @@ public class CollectibleManager : MonoBehaviour
                 if (resetCollectibles)
                 {
                     ResetCollectedCollectibles();
+                    Debug.Log("Reset has been called");
                 }
             }
         }
