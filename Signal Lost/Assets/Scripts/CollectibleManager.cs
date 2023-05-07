@@ -6,15 +6,26 @@ public class CollectibleManager : MonoBehaviour
 {
     public CollectibleObject[] requiredCollectibles;
     public List<CollectibleObject> collectedCollectibles = new List<CollectibleObject>();
-
+    
+    SpriteSwapping spriteSwapping;
     public bool resetCollectibles = false;
+    [SerializeField] KeyManager keyManager;
+   
 
+    void Awake()
+    {
+        keyManager = keyManager.GetComponent<KeyManager>();
+        
+        spriteSwapping = FindObjectOfType<SpriteSwapping>();
+    }
     public void ResetCollectedCollectibles()
     {
-        foreach (CollectibleObject c in collectedCollectibles)
+        foreach (CollectibleObject key in collectedCollectibles)
         {
-            c.transform.position = c.originalPosition;
+            spriteSwapping.amountOfParts--;
+            key.transform.position = key.originalPosition;       
         }
+        keyManager.KeyReset();
         collectedCollectibles.Clear();
         resetCollectibles = false;
     }

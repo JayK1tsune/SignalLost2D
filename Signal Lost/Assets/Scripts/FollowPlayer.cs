@@ -7,8 +7,9 @@ public class FollowPlayer : MonoBehaviour
     [SerializeField] private Transform player;
     [SerializeField] private Vector3 offset;
     public bool isCollected{get;set;}
-    Animator animator;
+    public Animator animator;
     SpriteSwapping spriteSwapping;
+    BoxCollider2D boxCollider2D;
 
     public Vector3 origin;
     
@@ -17,22 +18,24 @@ public class FollowPlayer : MonoBehaviour
         animator = GetComponent<Animator>();
         spriteSwapping = player.GetComponent<SpriteSwapping>();
         origin = transform.position;
+        boxCollider2D = GetComponent<BoxCollider2D>();
         
     }
     void Update()
     {
-        if(isCollected){
-
+        if(isCollected){            
             animator.enabled = false;
             transform.position = player.position + player.TransformDirection(offset);
             transform.rotation = player.rotation;
+            boxCollider2D.enabled = false;
         }
 
     }
     void OnTriggerEnter2D(Collider2D other)
     {
         if(!isCollected){
-            spriteSwapping.amountOfParts++;           
+            spriteSwapping.amountOfParts++;    
+            boxCollider2D.enabled = true;       
         }
         isCollected = true;
         
