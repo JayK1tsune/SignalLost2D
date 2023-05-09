@@ -9,7 +9,7 @@ public class FollowPlayer : MonoBehaviour
     public bool isCollected{get;set;}
     public Animator animator;
     SpriteSwapping spriteSwapping;
-    BoxCollider2D boxCollider2D;
+    public BoxCollider2D boxCollider2D;
 
     public Vector3 origin;
     

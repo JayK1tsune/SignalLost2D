@@ -23,9 +23,10 @@ public class CollectibleManager : MonoBehaviour
         foreach (CollectibleObject key in collectedCollectibles)
         {
             spriteSwapping.amountOfParts--;
-            key.transform.position = key.originalPosition;       
+            //key.transform.position = key.originalPosition;       
         }
-        keyManager.KeyReset();
+        
+        StartCoroutine(keyManager.KeyReset());
         collectedCollectibles.Clear();
         resetCollectibles = false;
     }

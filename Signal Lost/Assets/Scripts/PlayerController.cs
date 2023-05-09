@@ -8,7 +8,7 @@ namespace SignalLost
     public class PlayerController : MonoBehaviour
 {
     Vector2 moveInput;
-
+    private AudioSource audioSource;
     
     /// <summary>////
     /// Jumping delegates
@@ -39,7 +39,7 @@ namespace SignalLost
         animator = GetComponent<Animator>();
         
         _colourDetect = player.GetComponent<colourDetect>();
-        
+        audioSource = GetComponent<AudioSource>();
         
     }
 
@@ -47,7 +47,7 @@ namespace SignalLost
     {
         
         isGrounded = Physics2D.OverlapCapsule(groundCheck.position,new Vector2(1f,0.14f),CapsuleDirection2D.Horizontal,0,groundLayer);
-
+        
     }
 
     void FixedUpdate()
@@ -76,6 +76,7 @@ namespace SignalLost
 
         if(isGrounded){
             rb.velocity = new Vector2(rb.velocity.x,jumpPower);
+            audioSource.Play();
         }
    
     }
