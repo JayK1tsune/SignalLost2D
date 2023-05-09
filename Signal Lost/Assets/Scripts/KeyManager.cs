@@ -2,8 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using System;
+
+
+[Serializable]
+public class Key
+{
+    public string name;
+    public So_Key data;
+
+    public GameObject instance;
+
+}
+
 public class KeyManager : MonoBehaviour
 {
+
+    public Key[] keys;
+
    GameObject YellowKey;
    GameObject GreenKey;
    GameObject BlueKey;
@@ -24,10 +40,6 @@ public class KeyManager : MonoBehaviour
     {
         spriteSwapping = FindObjectOfType<SpriteSwapping>();
         audioSource = GetComponent<AudioSource>();
-        YellowKey = GameObject.Find("YellowKey");
-        GreenKey = GameObject.Find("GreenKey");
-        BlueKey = GameObject.Find("BlueKey");
-        RedKey = GameObject.Find("RedKey");
         keyReset = false;
     }
     void Update()
@@ -41,7 +53,20 @@ public class KeyManager : MonoBehaviour
     {
         audioSource.PlayOneShot(wrongcode);
         yield return new WaitForSeconds(3.2f);
-        YellowKey.transform.position = yellowKeyOrigin;
+        foreach (var k in keys)
+        {
+          
+            FollowPlayer i = k.instance.GetComponent<FollowPlayer>();
+
+            i.isCollected = false;
+            i.animator.enabled = true;
+            i.boxCollider2D.enabled = true;
+
+            k.instance.transform.position = k.data.origin;
+        }
+
+
+/*         YellowKey.transform.position = yellowKeyOrigin;
         GreenKey.transform.position = greenKeyOrigin;  
         BlueKey.transform.position = blueKeyOrigin;
         RedKey.transform.position = redKeyOrigin;
@@ -56,7 +81,7 @@ public class KeyManager : MonoBehaviour
         YellowKey.GetComponent<FollowPlayer>().boxCollider2D.enabled = true;
         GreenKey.GetComponent<FollowPlayer>().boxCollider2D.enabled = true;
         BlueKey.GetComponent<FollowPlayer>().boxCollider2D.enabled = true;
-        RedKey.GetComponent<FollowPlayer>().boxCollider2D.enabled = true;
+        RedKey.GetComponent<FollowPlayer>().boxCollider2D.enabled = true; */
         keyReset = true;
         
     }

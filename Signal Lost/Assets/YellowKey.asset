@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22bd45d13d80d4344aef0a66455ed158, type: 3}
   m_Name: YellowKey
   m_EditorClassIdentifier: 
-  origin: {x: 0, y: 0, z: 0}
+  origin: {x: 10.9136095, y: -1.54, z: 0}
   isCollected: 0
   keyReset: 0
-  animator: {fileID: 0}
