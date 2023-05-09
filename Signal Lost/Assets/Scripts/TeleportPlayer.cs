@@ -9,17 +9,6 @@ public class TeleportPlayer : MonoBehaviour
     public GameObject tp_Origin;
     public Transform tp_Prefab;
 
-
-    void Awake()
-    {
-      
-    }
-
-    /// <summary>
-    /// Sent when another object enters a trigger collider attached to this
-    /// object (2D physics only).
-    /// </summary>
-    /// <param name="other">The other Collider2D involved in this collision.</param>
     void OnTriggerEnter2D(Collider2D other)
     {   
         player.transform.position = tp_Origin.transform.position;
