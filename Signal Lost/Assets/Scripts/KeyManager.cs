@@ -35,6 +35,7 @@ public class KeyManager : MonoBehaviour
    [SerializeField] Vector3 redKeyOrigin;
 
    public bool keyReset;
+   private bool winMusic;
 
     void Start()
     {
@@ -44,8 +45,9 @@ public class KeyManager : MonoBehaviour
     }
     void Update()
     {
-        if(spriteSwapping.isWhole){
+        if(spriteSwapping.isWhole && !winMusic){
             audioSource.PlayOneShot(rightCode, 0.5f);
+            winMusic = true;
         }
     }
 

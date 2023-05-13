@@ -34,7 +34,7 @@ public class ExitLoop : MonoBehaviour
     {
         if(spriteSwapping.amountOfParts >= 4){
 
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(2);
         }
         Debug.Log("Player hit");
     }

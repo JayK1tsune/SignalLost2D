@@ -15,13 +15,13 @@ public class GameManager : MonoBehaviour
         
     }
     public void PlayGame(){
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
     public void StartGame(){
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
     public void MainMenu(){
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(0);
     }
     public void QuitGame(){
         Application.Quit();
